@@ -1,0 +1,6 @@
+{
+  "output_triton_kernels": [],
+  "ir_pre_fusion": [],
+  "ir_post_fusion": [],
+  "total_count": 0
+}
