@@ -1,69 +1,69 @@
 {
   "file_details": [
     {
-      "path": ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/inductor_triton_kernel_to_post_grad_nodes.json",
-      "size": 2,
-      "name": "inductor_triton_kernel_to_post_grad_nodes.json",
-      "type": "unknown"
-    },
-    {
-      "path": ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/ir_pre_fusion.txt",
-      "size": 517,
+      "path": ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/ir_pre_fusion.txt",
+      "size": 906,
       "name": "ir_pre_fusion.txt",
       "type": "ir_pre_fusion"
     },
     {
-      "path": ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/fx_graph_transformed.py",
-      "size": 450,
-      "name": "fx_graph_transformed.py",
+      "path": ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/output_code.py",
+      "size": 7589,
+      "name": "output_code.py",
+      "type": "output_triton_kernels"
+    },
+    {
+      "path": ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/inductor_provenance_tracking_node_mappings.json",
+      "size": 222,
+      "name": "inductor_provenance_tracking_node_mappings.json",
       "type": "unknown"
     },
     {
-      "path": ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/fx_graph_readable.py",
+      "path": ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/ir_post_fusion.txt",
+      "size": 906,
+      "name": "ir_post_fusion.txt",
+      "type": "ir_post_fusion"
+    },
+    {
+      "path": ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/fx_graph_runnable.py",
+      "size": 2755,
+      "name": "fx_graph_runnable.py",
+      "type": "unknown"
+    },
+    {
+      "path": ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/inductor_triton_kernel_to_post_grad_nodes.json",
+      "size": 39,
+      "name": "inductor_triton_kernel_to_post_grad_nodes.json",
+      "type": "unknown"
+    },
+    {
+      "path": ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/fx_graph_readable.py",
       "size": 450,
       "name": "fx_graph_readable.py",
       "type": "unknown"
     },
     {
-      "path": ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/inductor_provenance_tracking_node_mappings.json",
-      "size": 148,
-      "name": "inductor_provenance_tracking_node_mappings.json",
+      "path": ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/fx_graph_transformed.py",
+      "size": 450,
+      "name": "fx_graph_transformed.py",
       "type": "unknown"
-    },
-    {
-      "path": ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/fx_graph_runnable.py",
-      "size": 2644,
-      "name": "fx_graph_runnable.py",
-      "type": "unknown"
-    },
-    {
-      "path": ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/ir_post_fusion.txt",
-      "size": 517,
-      "name": "ir_post_fusion.txt",
-      "type": "ir_post_fusion"
-    },
-    {
-      "path": ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/output_code.py",
-      "size": 2442,
-      "name": "output_code.py",
-      "type": "output_triton_kernels"
     }
   ],
   "output_triton_kernels": [
-    ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/output_code.py"
+    ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/output_code.py"
   ],
   "ir_pre_fusion": [
-    ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/ir_pre_fusion.txt"
+    ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/ir_pre_fusion.txt"
   ],
   "ir_post_fusion": [
-    ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/ir_post_fusion.txt"
+    ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/ir_post_fusion.txt"
   ],
   "total_count": 11,
   "other_files": [
-    ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/inductor_triton_kernel_to_post_grad_nodes.json",
-    ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/fx_graph_transformed.py",
-    ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/fx_graph_readable.py",
-    ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/inductor_provenance_tracking_node_mappings.json",
-    ".triton_cache/run_2025_07_15_08_05_00_101796-pid_266413/torchinductor/model__0_inference_0.0/fx_graph_runnable.py"
+    ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/inductor_provenance_tracking_node_mappings.json",
+    ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/fx_graph_runnable.py",
+    ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/inductor_triton_kernel_to_post_grad_nodes.json",
+    ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/fx_graph_readable.py",
+    ".triton_cache/run_2025_07_15_08_18_35_492730-pid_275258/torchinductor/model__0_inference_0.0/fx_graph_transformed.py"
   ]
 }

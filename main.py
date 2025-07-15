@@ -12,8 +12,8 @@ class MyModel(nn.Module):
         return self.linear(x)
 
 # 使用模型
-model = MyModel()
-x = torch.randn(32, 10)
+model = MyModel().to(device='cuda')
+x = torch.randn(32, 10).to(device='cuda')
 output = model.bubble_free(x)
 
 # 获取编译产物

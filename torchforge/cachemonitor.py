@@ -1,6 +1,7 @@
 from pathlib import Path
 import time
 from typing import Dict, Any, Optional
+import shutil
 class CacheMonitor:
     def __init__(self, cache_dir:str):
         self.cache_dir = Path(cache_dir)
@@ -83,12 +84,7 @@ class CacheMonitor:
                 if item.is_file():
                     item.unlink()
                 elif item.is_dir():
-                    for sub in item.rglob("*"):
-                        if sub.is_file():
-                            sub.unlink()
-                        elif sub.is_dir():
-                            sub.rmdir()
-                    item.rmdir()
+                    shutil.rmtree(item)
 
     def read_ir_file(self, ir_type: str = "ir_pre_fusion") -> Optional[str]:
         """读取指定类型的IR文件内容（如 pre_fusion/post_fusion）"""

@@ -1,0 +1,21 @@
+op0: SchedulerNode(MultiTemplateBuffer)
+op0.writes = [MemoryDep('buf0', c0, {c0: 160})]
+op0.unmet_dependencies = []
+op0.met_dependencies = 
+    [   MemoryDep('arg0_1', c0 + 10*c1, {c0: 10, c1: 5}),
+        MemoryDep('arg1_1', c1, {c0: 32, c1: 5}),
+        MemoryDep('arg2_1', c0, {c0: 320})]
+op0.outputs = [
+    buf0: MultiTemplateBuffer
+    buf0.layout = FixedLayout('cuda:0', torch.float32, size=[32, 5], stride=[5, 1])
+    buf0.users = [NodeUser(node=OUTPUT, can_inplace=False, is_weak=False)]
+]
+op0.group.device = cuda:0
+op0.group.iteration = (160, 1)
+op0.sizes = ([32, 5], ())
+arg1_1_layout = FixedLayout('cuda:0', torch.float32, size=[5], stride=[1])
+arg2_1_layout = FixedLayout('cuda:0', torch.float32, size=[32, 10], stride=[10, 1])
+arg0_1_layout = FixedLayout('cuda:0', torch.float32, size=[5, 10], stride=[10, 1])
+buf0_layout = FixedLayout('cuda:0', torch.float32, size=[32, 5], stride=[5, 1])
+
+

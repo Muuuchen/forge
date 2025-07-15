@@ -63,11 +63,11 @@ class Repro(torch.nn.Module):
         return (addmm,)
         
 def load_args(reader):
-    buf0 = reader.storage(None, 200)
+    buf0 = reader.storage(None, 200, device=device(type='cuda', index=0))
     reader.tensor(buf0, (5, 10), is_leaf=True)  # arg0_1
-    buf1 = reader.storage(None, 20)
+    buf1 = reader.storage(None, 20, device=device(type='cuda', index=0))
     reader.tensor(buf1, (5,), is_leaf=True)  # arg1_1
-    buf2 = reader.storage(None, 1280)
+    buf2 = reader.storage(None, 1280, device=device(type='cuda', index=0))
     reader.tensor(buf2, (32, 10), is_leaf=True)  # arg2_1
 load_args._version = 0
 mod = Repro()

@@ -1,0 +1,1 @@
+{"preToPost": {"linear": ["permute", "addmm"]}, "postToPre": {"permute": ["linear"], "addmm": ["linear"]}, "cppCodeToPost": {"triton_tem_fused_addmm_0": ["addmm"]}, "postToCppCode": {"addmm": ["triton_tem_fused_addmm_0"]}}
