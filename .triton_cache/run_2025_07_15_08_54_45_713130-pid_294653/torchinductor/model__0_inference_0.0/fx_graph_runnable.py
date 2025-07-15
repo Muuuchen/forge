@@ -57,10 +57,19 @@ class Repro(torch.nn.Module):
 
     
     
-    def forward(self, arg0_1, arg1_1, arg2_1):
+    def forward(self, arg0_1, arg1_1, arg2_1, arg3_1, arg4_1, arg5_1):
         permute = torch.ops.aten.permute.default(arg0_1, [1, 0]);  arg0_1 = None
         addmm = torch.ops.aten.addmm.default(arg1_1, arg2_1, permute);  arg1_1 = arg2_1 = permute = None
-        return (addmm,)
+        relu = torch.ops.aten.relu.default(addmm);  addmm = None
+        pow_1 = torch.ops.aten.pow.Tensor_Scalar(relu, 2)
+        mean = torch.ops.aten.mean.dim(pow_1, [1], True);  pow_1 = None
+        add = torch.ops.aten.add.Scalar(mean, 1.1920928955078125e-07);  mean = None
+        rsqrt = torch.ops.aten.rsqrt.default(add);  add = None
+        mul = torch.ops.aten.mul.Tensor(relu, rsqrt);  relu = rsqrt = None
+        mul_1 = torch.ops.aten.mul.Tensor(mul, arg3_1);  mul = arg3_1 = None
+        permute_1 = torch.ops.aten.permute.default(arg4_1, [1, 0]);  arg4_1 = None
+        addmm_1 = torch.ops.aten.addmm.default(arg5_1, mul_1, permute_1);  arg5_1 = mul_1 = permute_1 = None
+        return (addmm_1,)
         
 def load_args(reader):
     buf0 = reader.storage(None, 200, device=device(type='cuda', index=0))
@@ -69,6 +78,12 @@ def load_args(reader):
     reader.tensor(buf1, (5,), is_leaf=True)  # arg1_1
     buf2 = reader.storage(None, 1280, device=device(type='cuda', index=0))
     reader.tensor(buf2, (32, 10), is_leaf=True)  # arg2_1
+    buf3 = reader.storage(None, 20, device=device(type='cuda', index=0))
+    reader.tensor(buf3, (5,), is_leaf=True)  # arg3_1
+    buf4 = reader.storage(None, 40, device=device(type='cuda', index=0))
+    reader.tensor(buf4, (2, 5), is_leaf=True)  # arg4_1
+    buf5 = reader.storage(None, 8, device=device(type='cuda', index=0))
+    reader.tensor(buf5, (2,), is_leaf=True)  # arg5_1
 load_args._version = 0
 mod = Repro()
 if __name__ == '__main__':

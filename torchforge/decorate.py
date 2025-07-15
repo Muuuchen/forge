@@ -89,6 +89,7 @@ def no_bubble(cls_or_config=None):
                         if self._decorator_instance.config.verbose:
                             print(f"⚠️ Compiling time error: {e}")
                 self._compilation_artifacts = self._decorator_instance._get_compilation_artifacts()
+
                 self._needs_compilation = False
                 if self._decorator_instance.config.verbose:
                     print(f"🎉 Compiled done!")
@@ -110,10 +111,22 @@ def no_bubble(cls_or_config=None):
             """获取编译产物"""
             return getattr(self, '_compilation_artifacts', {})
         
-        def get_triton_kernels(self) -> List[Dict[str, Any]]:
+        def get_triton_kernels_path(self) -> List[Dict[str, Any]]:
             """获取生成的 Triton kernel 文件"""
             artifacts = self.get_compilation_artifacts()
-            return artifacts.get('triton_kernels', [])
+            path = artifacts.get('output_triton_kernels', [])
+            return path
+        def get_post_ir_path(self) -> List[Dict[str, Any]]:
+            """获取生成的 Triton kernel 文件"""
+            artifacts = self.get_compilation_artifacts()
+            path = artifacts.get('ir_post_fusion', [])
+            return path
+        def get_pre_ir_path(self) -> List[Dict[str, Any]]:
+            """获取生成的 Triton kernel 文件"""
+            artifacts = self.get_compilation_artifacts()
+            path = artifacts.get('ir_pre_fusion', [])
+            return path
+        
         
         def get_cpp_code(self) -> List[Dict[str, Any]]:
             """获取生成的 C++ 代码文件"""
@@ -139,25 +152,16 @@ def no_bubble(cls_or_config=None):
             if hasattr(self, '_decorator_instance') and self._decorator_instance.config.verbose:
                 print("🔄 标记为需要重新编译")
         
-        def print_kernel_code(self, kernel_index: int = 0):
-            """打印指定 Triton kernel 的代码"""
-            kernels = self.get_triton_kernels()
-            if kernels and kernel_index < len(kernels):
-                kernel = kernels[kernel_index]
-                print(f"📝 Triton Kernel ({kernel['name']}):")
-                print("=" * 50)
-                print(kernel.get('content_preview', 'No content available'))
-                print("=" * 50)
-            else:
-                print(f"⚠️ 没有找到索引为 {kernel_index} 的 kernel")
+   
         cls.__init__ = new_init
         cls._print_artifacts_summary = _print_artifacts_summary
         cls.get_compilation_artifacts = get_compilation_artifacts
-        cls.get_triton_kernels = get_triton_kernels
+        cls.get_triton_kernels_path = get_triton_kernels_path
+        cls.get_post_ir_path = get_post_ir_path
+        cls.get_pre_ir_path = get_pre_ir_path
         cls.get_cpp_code = get_cpp_code
         cls.save_artifacts_info = save_artifacts_info
         cls.force_recompile = force_recompile
-        cls.print_kernel_code = print_kernel_code
         cls.bubble_free = new_forward
         return cls
     

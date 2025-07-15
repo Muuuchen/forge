@@ -7,9 +7,16 @@ class MyModel(nn.Module):
     def __init__(self):
         super().__init__()
         self.linear = nn.Linear(10, 5)
+        self.relu = nn.ReLU()
+        self.rmsnorm = nn.RMSNorm(5)
+        self.linear2 = nn.Linear(5, 2)
     
     def forward(self, x):
-        return self.linear(x)
+        x = self.linear(x)
+        x = self.relu(x)
+        x = self.rmsnorm(x)
+        x = self.linear2(x)
+        return x
 
 # 使用模型
 model = MyModel().to(device='cuda')
@@ -20,28 +27,4 @@ output = model.bubble_free(x)
 artifacts = model.get_compilation_artifacts()
 print(f"总共生成了 {artifacts['total_count']} 个文件")
 
-# 获取 Triton kernels
-triton_kernels = model.get_triton_kernels()
-for i, kernel in enumerate(triton_kernels):
-    print(f"Kernel {i}: {kernel['name']} ({kernel['size']} bytes)")
-
-# 获取 C++ 代码
-cpp_files = model.get_cpp_code()
-for cpp_file in cpp_files:
-    print(f"C++ file: {cpp_file['relative_path']}")
-
-# 打印第一个 kernel 的代码
-model.print_kernel_code(0)
-
-# 保存所有产物信息
-model.save_artifacts_info("my_model_artifacts.json")
-
-# 读取 pre_fusion IR 内容
-ir_content = model._decorator_instance.read_ir("ir_pre_fusion")
-if ir_content:
-    print("Pre-fusion IR 内容:\n", ir_content[:300])
-
-# 改写 pre_fusion IR（示例：加一行注释）
-def add_comment_to_ir(content):
-    return "# Modified by script\n" + content if content else content
-model._decorator_instance.rewrite_ir("ir_pre_fusion", add_comment_to_ir)
+print("生成的 Triton kernel 文件:", model.get_triton_kernels_path())
