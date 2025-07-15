@@ -35,3 +35,13 @@ model.print_kernel_code(0)
 
 # 保存所有产物信息
 model.save_artifacts_info("my_model_artifacts.json")
+
+# 读取 pre_fusion IR 内容
+ir_content = model._decorator_instance.read_ir("ir_pre_fusion")
+if ir_content:
+    print("Pre-fusion IR 内容:\n", ir_content[:300])
+
+# 改写 pre_fusion IR（示例：加一行注释）
+def add_comment_to_ir(content):
+    return "# Modified by script\n" + content if content else content
+model._decorator_instance.rewrite_ir("ir_pre_fusion", add_comment_to_ir)

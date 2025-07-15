@@ -10,6 +10,7 @@ class TorchCompilerDecorator:
     def __init__(self, config: Optional[CompileConfig] = None):
         self.config = config or CompileConfig()
         self.cache_monitor =CacheMonitor(self.config.cache_dir)
+        self.cache_monitor.clear_cache()  # 每次初始化都清理cache
         self._setup_environment()
 
     def _setup_environment(self):
@@ -45,6 +46,14 @@ class TorchCompilerDecorator:
         """获取编译过程中生成的文件和信息"""
         return self.cache_monitor.get_generated_files()
     
+    def read_ir(self, ir_type: str = "ir_pre_fusion") -> Optional[str]:
+        """读取指定类型的IR文件内容"""
+        return self.cache_monitor.read_ir_file(ir_type)
+
+    def rewrite_ir(self, ir_type: str = "ir_pre_fusion", rewrite_fn=None) -> bool:
+        """对指定类型的IR文件内容进行改写"""
+        return self.cache_monitor.rewrite_ir_file(ir_type, rewrite_fn)
+
 _default_decorator = TorchCompilerDecorator()
 
 def no_bubble(cls_or_config=None):

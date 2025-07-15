@@ -74,6 +74,38 @@ class CacheMonitor:
         """Stop monitoring the cache directory."""
         self.monitoring = False
 
+    def clear_cache(self):
+        """删除cache目录下的所有文件和子目录"""
+        if self.cache_dir.exists():
+            for item in self.cache_dir.iterdir():
+                if item.is_file():
+                    item.unlink()
+                elif item.is_dir():
+                    for sub in item.rglob("*"):
+                        if sub.is_file():
+                            sub.unlink()
+                        elif sub.is_dir():
+                            sub.rmdir()
+                    item.rmdir()
+
+    def read_ir_file(self, ir_type: str = "ir_pre_fusion") -> Optional[str]:
+        """读取指定类型的IR文件内容（如 pre_fusion/post_fusion）"""
+        ir_files = list(self.cache_dir.glob(f"*{ir_type}*"))
+        if ir_files:
+            return self._safe_read_text(ir_files[0])
+        return None
+
+    def rewrite_ir_file(self, ir_type: str = "ir_pre_fusion", rewrite_fn=None) -> bool:
+        """对指定类型的IR文件内容进行改写，rewrite_fn为内容处理函数"""
+        ir_files = list(self.cache_dir.glob(f"*{ir_type}*"))
+        if ir_files and rewrite_fn:
+            content = self._safe_read_text(ir_files[0])
+            new_content = rewrite_fn(content)
+            with open(ir_files[0], 'w', encoding='utf-8') as f:
+                f.write(new_content)
+            return True
+        return False
+
 
 
 
