@@ -24,16 +24,17 @@ class CacheMonitor:
         generated_files = current_files - self.initial_files
         
         artifacts = {
+            "file_details":[],
             "output_triton_kernels": [],
             "ir_pre_fusion": [],
             "ir_post_fusion": [],   
-            "total_count": len(generated_files),  
+            "total_count": len(generated_files), 
+            "other_files":[] 
         }
         for file_path in generated_files:
-            if file_path.isfile():
+            if file_path.is_file():
                 file_info = self._analyze_file(file_path)
                 artifacts["file_details"].append(file_info)
-                
                 if file_info["type"] == "output_triton_kernels":
                     artifacts["output_triton_kernels"].append(file_path)
                 elif file_info["type"] == "ir_pre_fusion":
@@ -73,6 +74,8 @@ class CacheMonitor:
     def stop_monitoring(self):
         """Stop monitoring the cache directory."""
         self.monitoring = False
+        
+    
 
 
 

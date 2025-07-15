@@ -13,7 +13,7 @@ class MyModel(nn.Module):
 
 # 使用模型
 model = MyModel()
-x = torch.randn(32, 10,device='cuda:1')
+x = torch.randn(32, 10)
 output = model.bubble_free(x)
 
 # 获取编译产物

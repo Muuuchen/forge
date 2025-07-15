@@ -1,0 +1,1 @@
+{"preToPost": {"linear": ["permute", "addmm"]}, "postToPre": {"permute": ["linear"], "addmm": ["linear"]}, "cppCodeToPost": {}, "postToCppCode": {}}
