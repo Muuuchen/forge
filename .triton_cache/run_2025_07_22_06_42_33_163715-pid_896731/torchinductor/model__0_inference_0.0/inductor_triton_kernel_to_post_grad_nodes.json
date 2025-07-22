@@ -1,0 +1,1 @@
+{"triton_tem_fused_addmm_0": ["mm_default"], "triton_per_fused_add_addmm_mean_mul_pow_relu_rsqrt_1": ["mul_1", "mul", "relu", "add_tensor", "rsqrt", "add", "mean", "pow_1"], "triton_tem_fused_add_addmm_mean_mul_pow_relu_rsqrt_2": ["addmm_1", "mul_1", "mul", "relu", "add_tensor", "rsqrt", "add", "mean", "pow_1"]}

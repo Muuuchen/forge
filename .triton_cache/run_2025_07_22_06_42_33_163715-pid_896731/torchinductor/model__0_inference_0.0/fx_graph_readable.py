@@ -1,0 +1,22 @@
+class <lambda>(torch.nn.Module):
+    def forward(self, arg0_1: "f32[128, 256]", arg1_1: "f32[128]", arg2_1: "f32[256, 256]", arg3_1: "f32[128]", arg4_1: "f32[256, 128]", arg5_1: "f32[256]"):
+         # File: /root/TorchForge/main.py:18 in forward, code: x = self.linear(x)
+        permute: "f32[256, 128]" = torch.ops.aten.permute.default(arg0_1, [1, 0]);  arg0_1 = None
+        addmm: "f32[256, 128]" = torch.ops.aten.addmm.default(arg1_1, arg2_1, permute);  arg1_1 = arg2_1 = permute = None
+        
+         # File: /root/TorchForge/main.py:19 in forward, code: x = self.relu(x)
+        relu: "f32[256, 128]" = torch.ops.aten.relu.default(addmm);  addmm = None
+        
+         # File: /root/workspace/.venv/lib/python3.12/site-packages/torch/nn/functional.py:2929 in rms_norm, code: return torch.rms_norm(input, normalized_shape, weight, eps)
+        pow_1: "f32[256, 128]" = torch.ops.aten.pow.Tensor_Scalar(relu, 2)
+        mean: "f32[256, 1]" = torch.ops.aten.mean.dim(pow_1, [1], True);  pow_1 = None
+        add: "f32[256, 1]" = torch.ops.aten.add.Scalar(mean, 1.1920928955078125e-07);  mean = None
+        rsqrt: "f32[256, 1]" = torch.ops.aten.rsqrt.default(add);  add = None
+        mul: "f32[256, 128]" = torch.ops.aten.mul.Tensor(relu, rsqrt);  relu = rsqrt = None
+        mul_1: "f32[256, 128]" = torch.ops.aten.mul.Tensor(mul, arg3_1);  mul = arg3_1 = None
+        
+         # File: /root/TorchForge/main.py:21 in forward, code: x = self.linear2(x)
+        permute_1: "f32[128, 256]" = torch.ops.aten.permute.default(arg4_1, [1, 0]);  arg4_1 = None
+        addmm_1: "f32[256, 256]" = torch.ops.aten.addmm.default(arg5_1, mul_1, permute_1);  arg5_1 = mul_1 = permute_1 = None
+        return (addmm_1,)
+        

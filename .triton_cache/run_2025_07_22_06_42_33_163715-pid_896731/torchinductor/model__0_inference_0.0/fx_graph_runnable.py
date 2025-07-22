@@ -72,18 +72,18 @@ class Repro(torch.nn.Module):
         return (addmm_1,)
         
 def load_args(reader):
-    buf0 = reader.storage(None, 200, device=device(type='cuda', index=0))
-    reader.tensor(buf0, (5, 10), is_leaf=True)  # arg0_1
-    buf1 = reader.storage(None, 20, device=device(type='cuda', index=0))
-    reader.tensor(buf1, (5,), is_leaf=True)  # arg1_1
-    buf2 = reader.storage(None, 1280, device=device(type='cuda', index=0))
-    reader.tensor(buf2, (32, 10), is_leaf=True)  # arg2_1
-    buf3 = reader.storage(None, 20, device=device(type='cuda', index=0))
-    reader.tensor(buf3, (5,), is_leaf=True)  # arg3_1
-    buf4 = reader.storage(None, 40, device=device(type='cuda', index=0))
-    reader.tensor(buf4, (2, 5), is_leaf=True)  # arg4_1
-    buf5 = reader.storage(None, 8, device=device(type='cuda', index=0))
-    reader.tensor(buf5, (2,), is_leaf=True)  # arg5_1
+    buf0 = reader.storage(None, 131072, device=device(type='cuda', index=0))
+    reader.tensor(buf0, (128, 256), is_leaf=True)  # arg0_1
+    buf1 = reader.storage(None, 512, device=device(type='cuda', index=0))
+    reader.tensor(buf1, (128,), is_leaf=True)  # arg1_1
+    buf2 = reader.storage(None, 262144, device=device(type='cuda', index=0))
+    reader.tensor(buf2, (256, 256), is_leaf=True)  # arg2_1
+    buf3 = reader.storage(None, 512, device=device(type='cuda', index=0))
+    reader.tensor(buf3, (128,), is_leaf=True)  # arg3_1
+    buf4 = reader.storage(None, 131072, device=device(type='cuda', index=0))
+    reader.tensor(buf4, (256, 128), is_leaf=True)  # arg4_1
+    buf5 = reader.storage(None, 1024, device=device(type='cuda', index=0))
+    reader.tensor(buf5, (256,), is_leaf=True)  # arg5_1
 load_args._version = 0
 mod = Repro()
 if __name__ == '__main__':
